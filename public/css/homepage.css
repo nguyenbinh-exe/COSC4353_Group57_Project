@@ -68,6 +68,9 @@
 .feature-icons:hover{
     color: #222831;
 }
+.feature_text{
+    color:black;
+}
 /*PRESS*/
 #press{
     background-color: #393E46;
@@ -83,7 +86,9 @@
 }
 
 /* footer-section */
+
 #footer{
+
     padding: 7% 15%;
     text-align: center;
 }

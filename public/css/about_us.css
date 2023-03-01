@@ -1,0 +1,11 @@
+#aboutus{
+    margin-top: 50px;
+}
+
+.about_us_image{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 50px;
+}
