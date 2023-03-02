@@ -14,7 +14,7 @@ app.set("view engine",'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-mongoose.connect("mongodb+srv://admin:<password>@cluster0.peg8eaz.mongodb.net/userDB");
+// mongoose.connect("mongodb+srv://admin:<password>@cluster0.peg8eaz.mongodb.net/userDB");
 
 app.get('/',function (req,res){
     res.render('homepage');
