@@ -7,7 +7,7 @@
 
 /*NAV BAR*/
 .navbar{
-    padding: 0 0 0 0;
+    padding: 0 4.5rem 0 4.5rem;
 }
 
 .navbar-brand{
@@ -18,16 +18,17 @@
 
 .nav-link{
     font-family: 'Ubuntu',sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 
 /*Title*/
 .title_image{
-    width: 20%;
+    width: 18%;
     position: absolute;
     right: 5%;
     margin-right: 50px;
+    padding-right: 3rem;
 
 }
 .title_text{
@@ -47,8 +48,13 @@
 .title_box{
     margin-top: 50px;
     padding-bottom: 100px;
-    padding_left:50px;
 
+}
+.title_text_box{
+    padding-left: 4.5rem;
+}
+.sign_up_buttons{
+    margin: 5% 3% 5% 0;
 }
 
 /* Features section */
