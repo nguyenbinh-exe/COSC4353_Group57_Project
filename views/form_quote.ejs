@@ -31,7 +31,15 @@
       <button class="btn btn-outline-light btn-lg download-buttons" type="submit">Confirm</button>
     </form>
   </main>
-  <script src="js/form_quote.js"></script>
+  <script>
+    function calculatePrice()
+    {
+      const price = Number(document.getElementById("price").value);
+      const gal = Number(document.getElementById("gals").value);
+      const total_price = price * gal;
+      document.getElementById("total").value = total_price.toFixed(2);
+    }
+  </script>
 </body>
 
 <%- include ('partials/footer'); -%>
