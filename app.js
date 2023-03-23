@@ -28,6 +28,10 @@ app.get('/AboutUs',function (req,res){
     res.render('AboutUs');
 })
 
+app.get('/profile',function (req,res){
+    res.render('profile');
+})
+
 app.get('/register',function (req,res){
     res.render('register');
 })
@@ -46,3 +50,8 @@ app.listen(3000,function(){
     console.log("Server is running on port 3000")
 })
 
+// Class for Pricing Module
+class pricing_module
+{
+
+}
