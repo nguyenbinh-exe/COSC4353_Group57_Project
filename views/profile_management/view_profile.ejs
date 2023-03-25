@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title>Profile Management</title>
+    
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/homepage.css">
+</head>
+<body>
+	<%- include ('../partials/header'); -%>
+
+	<header>
+		<h1>PROFILE</h1>
+	</header>
+	<section class=report>
+		<p>
+			<div id="report">
+				
+				FULL NAME:<br><br>
+				
+				ADDRESS:<br><br>
+				
+				CITY:<br><br>
+				
+				STATE:<br><br>
+				
+				ZIP CODE:<br><br>
+				
+				<br><br><br>
+				<button id="edit-btn" onclick="window.location.href = 'create_profile';">EDIT</button>
+			</div> 
+			
+			<div id='report'>
+				<%= name.toUpperCase() %><br><br>
+				
+				<%= address.toUpperCase() %><br><br>
+				
+				<%= city.toUpperCase() %><br><br>
+				
+				<%= state.toUpperCase() %><br><br>
+				
+				<%= zipcode.toUpperCase() %>
+			</div>
+		
+	</section>		
+	
+	<%- include ('../partials/footer'); -%>
+</body>
+</html>
+
+
