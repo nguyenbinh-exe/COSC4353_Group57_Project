@@ -60,7 +60,7 @@
         </header>
         
 
-        <form>
+        <form action = 'view_profile' method = 'POST'>
             <!-- full name -->            
             <label for="fullname">FULL NAME<span>*</span></label>
             <input class='required-input' type="text" id="fullname" name="fullname" required maxlength="50" >
@@ -76,7 +76,7 @@
             <label for="zipcode">ZIP CODE<span>*</span></label>
             
             <input class='required-input' type="text" id="city" name="city" required maxlength="100">                            
-            <select list="state-options" id="state" name="states">
+            <select list="state-options" type="text" id="state" name="state">
             <datalist id="state-options">
             <option value=""></option>   
             <option value="AL">Alabama</option>
