@@ -5,14 +5,19 @@ var _ = require("lodash");
 const mongoose = require('mongoose');
 
 const app = express();
-
 mongoose.set('strictQuery',false);
-
-
 
 app.set("view engine",'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+
+
+// create a route for profile management - Tung
+const profileRoute = require('./routes/profile');
+
+
+// connect 'profile' to its route - Tung
+app.use('/', profileRoute);
 
 // mongoose.connect("mongodb+srv://admin:<password>@cluster0.peg8eaz.mongodb.net/userDB");
 
