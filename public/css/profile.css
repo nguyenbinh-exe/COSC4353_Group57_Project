@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;          
+    font-family: Arial, sans-serif;  
 }
 
 header {
@@ -46,7 +46,19 @@ input:hover {
     border: 1px solid #ffffff;
 }
 
-button {
+.report {
+    margin: 30px;
+    display: flex;
+	flex-direction: row;
+}
+
+#report {
+    float: left;
+    width: 150px;
+}
+
+
+#submit-btn {
     background-color:#000000;
     color: #fff;
     border:none; 
@@ -58,17 +70,32 @@ button {
     width: 100%;
 }
 
-button:hover {
+#edit-btn {
+    background-color:#000000;
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    padding:2px;
+    height:30px; 
+    width: 120px;
+}
+
+#edit-btn:hover {
     background-color:#002ead;
     transition: 0.7s;
 }
 
-button:disabled {
+#submit-btn:hover {
+    background-color:#002ead;
+    transition: 0.7s;
+}
+
+#submit-btn:disabled {
     background-color: #ccc;
     color: #666;
 }
 
-button:not(:disabled) {
+#submit-btn:not(:disabled) {
     background-color: #0066cc;
     color: #fff;
 }
