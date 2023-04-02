@@ -20,6 +20,6 @@ const User = new Schema({
     timestamps: true,
 });
 
-const UserCredentials = mongoose.model('UserCredentials', User);
+const UserCredentials = mongoose.model('user_credentials', User);
 
 module.exports = UserCredentials;
