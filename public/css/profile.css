@@ -100,11 +100,15 @@ input:hover {
     color: #fff;
 }
 
-#fullname, #address1, #address2 {
+#lastname {
+    grid-column: 2 / 4;   
+}
+
+#address1, #address2 {
     grid-column: 1 / 4;   
 }
 
-#city {
+#city, #firstname {
     grid-column: 1 / 2;
 }
 

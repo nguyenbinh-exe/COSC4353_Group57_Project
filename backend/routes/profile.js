@@ -3,28 +3,32 @@ const express = require("express");
 var router = express.Router();
 let Client = require('../models/clientInformation.model');
 
-//router.get('/', (req, res) => {
-//    Client.find()
-//    .then(clientinfo => res.json(clientinfo))
-//    .catch(err => res.status(400).json('Error: ' + err));
-//});
-
 router.get('/create_profile', (req, res) => {
-    res.render('../views/profile_management/create_profile')
+    const firstname = 'Jon';
+    const lastname = 'S';
+    res.render('../views/profile_management/create_profile', {firstname, lastname})
+});
+
+router.post('/create_profile', (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    res.render('../views/profile_management/create_profile', {firstname, lastname})
 });
 
 router.post('/added_profile', (req, res, next) => {
     
     const body = req.body;
-    const name = body.fullname;
+    const firstname = body.firstname;
+    const lastname = body.lastname;
     const address1 = body.address1;
     const address2 = body.address2;
     const city = body.city;
     const state = body.state;
     const zipcode = body.zipcode;
-
+    let display_zipcode = zipcode.toString();
     const newClient = new Client({
-        name, 
+        firstname, 
+        lastname,
         address1,
         address2,
         city,
@@ -35,33 +39,31 @@ router.post('/added_profile', (req, res, next) => {
 
     newClient.save()
     //.then(() => res.json('user added'))
-    .then(() => res.render('../views/profile_management/view_profile', {name, address1, address2, city, state, zipcode}))
+    .then(() => res.render('../views/profile_management/view_profile', {firstname, lastname, address1, address2, city, state, display_zipcode}))
     .catch(err => res.status(400).json('Error: ' + err));
 
     
 });
 
 router.get('/view_profile', (req, res, next) => {
-    const userId = '64292ade5cf824df75ccad21'; 
+    const userId = '6429e7042573257de87191f6'; 
 
     Client.findById(userId).exec()
     .then((user) => {
         if (!user) {
         console.log('User not found');
         } else {
-            const name = user.name;
+            const firstname = user.firstname;
+            const lastname = user.lastname;
             const address1 = user.address1;
             const address2 = user.address2;
             const city = user.city;
             const state = user.state;
             const zipcode = user.zipcode;   
             let display_zipcode = zipcode.toString();
-            res.render('../views/profile_management/view_profile', {name, address1, address2, city, state, display_zipcode})
+            res.render('../views/profile_management/view_profile', {firstname, lastname, address1, address2, city, state, display_zipcode})
         }
-      });
-    
-    
-    
+      });    
 });
 
 
