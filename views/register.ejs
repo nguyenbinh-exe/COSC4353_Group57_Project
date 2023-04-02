@@ -1,17 +1,17 @@
 <%- include ('partials/header'); -%>
 
 <body  class="text-center signin">
-<form action="/" class="form-signin" method="post" >
+<form action="/create_profile" class="form-signin" method="post" >
     <img class="mb-4" src="images/title_img.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
-    <input type="text"  class="form-control signin_top" placeholder="First name" name="fn" required autofocus>
-    <input type="text"  class="form-control signin_middle" placeholder="Last Name" name="fn" required autofocus>
+    <input type="text"  class="form-control signin_top" placeholder="First name" name="firstname" required autofocus>
+    <input type="text"  class="form-control signin_middle" placeholder="Last Name" name="lastname" required autofocus>
 
     <input type="text"  class="form-control signin_middle" placeholder="Username" name="fn" required autofocus>
     <input type="email"  class="form-control signin_middle" placeholder="Email" name="fn" required autofocus>
     <input type="password"  class="form-control signin_bottom" placeholder="Password" name="ln" required>
 
-    <button class="btn btn-outline-light btn-lg download-buttons" type="submit" >Sign Up</button>
+    <button class="btn btn-outline-light btn-lg download-buttons" type="submit">Sign Up</button>
 </form>
 </body>
 <%- include ('partials/footer'); -%>
