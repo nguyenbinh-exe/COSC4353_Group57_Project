@@ -5,15 +5,9 @@ const Schema = mongoose.Schema;
 
 const fuelQuote = new Schema({
     clientID: {
-        type: ObjectId,
+        type: String,
         required: true,
-        unique: true,
         trim: true,
-    },
-    dateRequested: {
-        type: Date,
-        required: true,
-        trim: true
     },
     gallonsRequested: {
         type: Number,
@@ -24,9 +18,7 @@ const fuelQuote = new Schema({
         type: Number,
         required: true,
         trim: true,
-    },
-    
-
+    }
 }, {
     timestamps: true,
 });
