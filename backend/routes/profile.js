@@ -1,33 +1,35 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser");
+
+var router = express.Router();
 
 let ClientData = require('../models/clientInformation.model');
-let FuelQuote = require('../models/fuelQuote.model');
+//let FuelQuote = require('../models/fuelQuote.model');
 
-const app = express();
-const port = process.env.PORT || 3003
-app.listen(port)
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
-const mongoose = require('mongoose');
+//const app = express();
+//const port = process.env.PORT || 3003
+//app.listen(port)
+////app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json())
+//const mongoose = require('mongoose');
 
-mongoose.set('strictQuery',false);
+//mongoose.set('strictQuery',false);
 
 //connect database;
-mongoose.connect('mongodb+srv://admin:Group57@cluster0.peg8eaz.mongodb.net/userDB');
-const connection = mongoose.connection;
+//mongoose.connect('mongodb+srv://admin:Group57@cluster0.peg8eaz.mongodb.net/userDB');
+//const connection = mongoose.connection;
 
-app.set("view engine",'ejs');
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'));
+//app.set("view engine",'ejs');
+/////app.use(bodyParser.urlencoded({extended: true}));
+//app.use(express.static('public'));
 
-app.post('/create_profile', (req, res) => {
+router.post('/create_profile', (req, res) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     res.render('../views/profile_management/create_profile', {firstname, lastname})
 });
 
-app.post('/added_profile', (req, res) => {
+router.post('/added_profile', (req, res) => {
     const body = req.body;
     const firstname = body.firstname;
     const lastname = body.lastname;
@@ -37,6 +39,7 @@ app.post('/added_profile', (req, res) => {
     const city = body.city;
     const state = body.state;
     const zipcode = body.zipcode;
+    let display_zipcode = zipcode.toString();
     const newClient = new ClientData({
         name,
         address1,
@@ -46,11 +49,13 @@ app.post('/added_profile', (req, res) => {
         zipcode
     });
     
-
-    newClient.save().then(() => res.sendStatus(200)).catch(err => res.sendStatus(400).json('Error: ' + err));
+    newClient.save()
+     //.then(() => res.json('user added'))
+     .then(() => res.render('../views/profile_management/view_profile', {name, address1, address2, city, state, display_zipcode}))
+     .catch(err => res.status(400).json('Error: ' + err));
 })
 
-app.post('/update_profile', (req, res) => {
+router.post('/update_profile', (req, res) => {
     var body = req.body
     var id = body.id 
     ClientData.findOne({_id: id}).then((person) => {
@@ -70,45 +75,27 @@ app.post('/update_profile', (req, res) => {
     });
 });
 
-app.get('/view_profile', (req, res) => {
+router.get('/view_profile', (req, res) => {
     const userId = req.body.id; 
     ClientData.findOne({_id: userId})
     .then((user) => {
         if (!user) {
         console.log('User not found');
         } else {
-            res.send(user)
+            const firstname = user.firstname;
+            const lastname = user.lastname;
+            const address1 = user.address1;
+            const address2 = user.address2;
+            const city = user.city;
+            const state = user.state;
+            const zipcode = user.zipcode;   
+            let display_zipcode = zipcode.toString();
+            res.render('../views/profile_management/view_profile', {firstname, lastname, address1, address2, city, state, display_zipcode})
             return
         }
       });    
 });
 
-app.post('/add_fuel_quote', (req, res) => {
-    var body = req.body
-    var clientID = body.clientID
-    var gallonsRequested = body.gallonsRequested
-    var suggestedPrice = body.suggestedPrice
-    const fuelQuote = new FuelQuote({
-        clientID,
-        gallonsRequested,
-        suggestedPrice
-    });
-
-    fuelQuote.save().then(() => res.sendStatus(200)).catch(err => res.sendStatus(400).json('Error: ' + err));
-    
-
-});
-
-app.get('/get_all_fuel_quotes', (req, res) => {
-    FuelQuote.find({clientID: req.body.clientID}).then((result, err) => {
-        console.log(err)
-        if (err) {
-          console.log(err);
-        } else {
-          res.send(result);
-        }
-      });
-});
 
 
-module.exports = app
+module.exports = router;

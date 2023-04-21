@@ -23,10 +23,13 @@ app.use(express.static('public'));
 
 
 
-// create a route for profile management - Tung
+// set routes - Tung
 const profileRoute = require('./backend/routes/profile');
-// connect 'profile' to its route - Tung
+const quotehistRoute = require('./backend/routes/quotehist');
+
+// connect routes - Tung
 app.use('/', profileRoute);
+app.use('/', quotehistRoute);
 
 app.get('/',function (req,res){
     res.render('homepage');
@@ -40,9 +43,9 @@ app.get('/AboutUs',function (req,res){
     res.render('AboutUs');
 })
 
-app.get('/profile',function (req,res){
-    res.render('profile');
-})
+//app.get('/profile',function (req,res){
+//    res.render('profile');
+//})
 
 app.get('/register',function (req,res){
     res.render('register');
@@ -52,9 +55,9 @@ app.get('/formquote',function (req,res){
     res.render('form_quote');
 })
 
-app.get('/quotehist',function (req,res){
-    res.render('quotehist');
-})
+//app.get('/quotehist',function (req,res){
+//    res.render('quotehist');
+//})
 
 
 
