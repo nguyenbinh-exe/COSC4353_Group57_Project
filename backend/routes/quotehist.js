@@ -26,7 +26,8 @@ router.get('/get_all_fuel_quotes', (req, res) => {
         if (err) {
           console.log(err);
         } else {
-          res.render('quotehist');
+          
+          res.render('quotehist'); //  Need to send data to front end
           //res.send(result);
         }
       });
