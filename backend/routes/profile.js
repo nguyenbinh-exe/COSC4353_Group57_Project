@@ -21,6 +21,11 @@ app.set("view engine",'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
+app.post('/create_profile', (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    res.render('../views/profile_management/create_profile', {firstname, lastname})
+});
 
 app.post('/added_profile', (req, res) => {
     const body = req.body;
