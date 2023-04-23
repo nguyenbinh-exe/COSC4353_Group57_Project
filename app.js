@@ -2,41 +2,86 @@ require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require('ejs');
-var _ = require("lodash");
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
-const saltRounds = 10;
-
+const session = require('express-session')
+const passport = require('passport')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 
 const app = express();
-const port = process.env.PORT || 3000
+
 mongoose.set('strictQuery',false);
-
-
 app.set("view engine",'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 
-//connect database;
+
+
+
+/////////////// PASSPORT //////////////////
+app.use(session({
+    secret: 'ThisisGroup57',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+/////////////////////// END /////////////////////
+
+
+
+
+
+
+
+
+
+
+//////////////////// MONGODB ///////////////////////
 // mongoose.connect('mongodb+srv://admin:Group57@cluster0.peg8eaz.mongodb.net/userDB');
 mongoose.connect('mongodb://0.0.0.0:27017/Group57DB')
+
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("Database established!");
 })
+/////////////////////// END /////////////////////
 
 
 
-// USER SCHEMA//
+
+
+
+
+
+
+
+
+
+
+//////////////////// USER SCHEMA/////////////////
 const userSchema = new mongoose.Schema({
-    email: String,
-    password: String
+    firstName: String,
+    lastName: String,
+    address: String,
+    city: String,
+    state: String,
+    zipcode: Number,
+    userName: String,
+    passWord: String
 })
+userSchema.plugin(passportLocalMongoose)
 const User = new mongoose.model('User',userSchema)
 
+passport.use(User.createStrategy());
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+/////////////////////// END /////////////////////
 
 
 
@@ -49,10 +94,30 @@ const quotehistRoute = require('./backend/routes/quotehist');
 app.use('/', profileRoute);
 app.use('/', quotehistRoute);
 
+
+
+
+
+
+/////////////// HOME ROUTE ////////////////////////////
 app.get('/',function (req,res){
-    res.render('homepage');
+    if(req.isAuthenticated()){
+        res.redirect('/loggedin')
+    }else{
+        res.render('homepage')
+    }
 })
 
+app.get('/loggedin',function(req,res){
+    if(!req.isAuthenticated()){
+        res.redirect('/')
+    }
+    else{
+        res.render('homepageAuthenticated',{ firstName: req.user.firstName,lastName: req.user.lastName, username: req.user.username })
+    }
+
+})
+/////////////////////// END /////////////////////
 
 
 
@@ -62,33 +127,27 @@ app.get('/login',function (req,res){
     res.render('login');
 })
 app.post('/login', (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-
-    User.findOne({ email })
-        .then((foundUser) => {
-            if (!foundUser) {
-                return res.status(401).send('Email or password is incorrect');
-            }
-            bcrypt.compare(password, foundUser.password, (err, result) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).send('Internal server error');
-                }
-                if (result) {
-                    res.render('secrets');
-                } else {
-                    return res.status(401).send('Email or password is incorrect');
-                }
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            return res.status(500).send('Internal server error');
-        });
+   const user = new User({
+       username: req.body.username,
+       password: req.body.password
+   })
+    req.login(user,function(err){
+        if(err){
+            console.log(err)
+        }else{
+            passport.authenticate('local')(req,res,function(){
+                res.redirect('/secrets');
+            })}
+    })
 });
 
 /////////////////////// END /////////////////////
+
+
+
+
+
+
 
 
 
@@ -98,21 +157,41 @@ app.get('/register',function (req,res){
 })
 app.post('/register',function(req,res){
 
-    bcrypt.hash(req.body.password, saltRounds,function(err,hash){
-        const newUser = new User({
-            email: req.body.email,
-            password: hash
-        })
-        newUser.save().then(()=>{
-            console.log('User saved')
-            res.render('secrets')
-        }).catch(error=>{
-            console.error(error)
-        })
-    })
+    var newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username
+    });
 
+    User.register(newUser, req.body.password, function(err){
+        if(err){
+            console.log(err);
+            res.redirect('/register');
+        }else{
+            passport.authenticate('local')(req,res,function(){
+                res.redirect('secrets')
+            })
+        }
+    });
 })
 /////////////////////// END /////////////////////
+
+
+
+
+
+
+
+
+/////////////// LOG OUT ROUTE//////////////
+app.get("/logout",function(req,res){
+    req.logout(function(err){
+        if(err){
+            console.log(err);
+        }
+        res.redirect('/');
+    });
+});
 
 //app.get('/profile',function (req,res){
 //    res.render('profile');
@@ -137,13 +216,35 @@ app.get('/AboutUs',function (req,res){
 //})
 
 
-
-app.listen(port,function(){
-    console.log(`Server is running on port: ${port}`)
+app.get('/secrets',function(req,res){
+    if(req.isAuthenticated()){
+        res.render('secrets',{ firstName: req.user.firstName,lastName: req.user.lastName, username: req.user.username })
+    }else{
+        res.redirect('/login')
+    }
 })
 
-// Class for Pricing Module
-class pricing_module
-{
+app.get('/updateProfile',function(req,res){
+    if(req.isAuthenticated()){
+        res.render('updateProfile',{ firstName: req.user.firstName,lastName: req.user.lastName, username: req.user.username })
+    }
+    else{
+        res.redirect('/login')
+    }
+})
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+app.listen(3000,function(){
+    console.log(`Server is running on port: ${3000}`)
+})

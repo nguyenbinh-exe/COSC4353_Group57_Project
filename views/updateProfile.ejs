@@ -1,4 +1,4 @@
-
+<%- include ('partials/headerLogin'); -%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +57,7 @@
 
 </head>
 <body>
-    <%- include ('../partials/header'); -%>
+
     <div>
         <header>
             <h1>PROFILE</h1>
@@ -68,8 +68,8 @@
             <!-- full name -->            
             <label for="firstname">FIRST NAME<span>*</span></label>
             <label for="lastname">LAST NAME<span>*</span></label>
-            <input class='required-input' type="text" id="firstname" name="firstname" required maxlength="50" value="<%= firstname %>">    
-            <input class='required-input' type="text" id="lastname" name="lastname" required maxlength="50" value="<%= lastname %>">
+            <input class='required-input' type="text" id="firstname" name="firstname" required maxlength="50" value="">
+            <input class='required-input' type="text" id="lastname" name="lastname" required maxlength="50" value="">
             <!-- address -->
             <label  for="address">ADDRESS 1<span>*</span></label>
             <input class='required-input' type="text" id="address1" name="address1" required maxlength="100">
@@ -152,7 +152,7 @@
 </body>
 </html>
 
-<%- include ('../partials/footer'); -%>
+<%- include ('partials/footer'); -%>
 
 
 
