@@ -157,7 +157,7 @@ app.get('/register',function (req,res){
 })
 app.post('/register',function(req,res){
 
-    var newUser = new User({
+    const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username
@@ -183,7 +183,7 @@ app.post('/register',function(req,res){
 
 
 
-/////////////// LOG OUT ROUTE//////////////
+/////////////// LOGOUT ROUTE//////////////
 app.get("/logout",function(req,res){
     req.logout(function(err){
         if(err){
@@ -193,29 +193,14 @@ app.get("/logout",function(req,res){
     });
 });
 
-//app.get('/profile',function (req,res){
-//    res.render('profile');
-//})
+/////////////////////// END /////////////////////
 
 
-// app.get('/secrets',function(req,res){
-//     res.render('secrets')
-// })
-
-app.get('/formquote',function (req,res){
-    res.render('form_quote');
-})
-
-app.get('/AboutUs',function (req,res){
-    res.render('AboutUs');
-})
 
 
-//app.get('/quotehist',function (req,res){
-//    res.render('quotehist');
-//})
+/////////////// CUSTOMER PAGE //////////////////
 
-
+//MAIN PAGE
 app.get('/secrets',function(req,res){
     if(req.isAuthenticated()){
         res.render('secrets',{ firstName: req.user.firstName,lastName: req.user.lastName, username: req.user.username })
@@ -224,6 +209,17 @@ app.get('/secrets',function(req,res){
     }
 })
 
+
+//FORM QUOTE
+app.get('/formquote',function (req,res){
+    if(req.isAuthenticated()) {
+        res.render('form_quote', {firstName: req.user.firstName, lastName: req.user.lastName, username: req.user.username})
+    }else{
+        res.redirect('/login')
+    }
+})
+
+// Setting Tab
 app.get('/updateProfile',function(req,res){
     if(req.isAuthenticated()){
         res.render('updateProfile',{ firstName: req.user.firstName,lastName: req.user.lastName, username: req.user.username })
@@ -234,6 +230,7 @@ app.get('/updateProfile',function(req,res){
 })
 
 
+/////////////////////// END /////////////////////
 
 
 
@@ -243,6 +240,26 @@ app.get('/updateProfile',function(req,res){
 
 
 
+
+
+
+
+
+//app.get('/quotehist',function (req,res){
+//    res.render('quotehist');
+//})
+
+
+//app.get('/profile',function (req,res){
+//    res.render('profile');
+//})
+
+
+
+
+app.get('/AboutUs',function (req,res){
+    res.render('AboutUs');
+})
 
 
 app.listen(3000,function(){
