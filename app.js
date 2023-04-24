@@ -61,7 +61,7 @@ connection.once('open', () => {
 
 
 
-//////////////////// USER SCHEMA/////////////////
+////////////////////    USER SCHEMA        /////////////////
 const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
@@ -75,6 +75,7 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(passportLocalMongoose)
 const User = new mongoose.model('User',userSchema)
 
+// Passport stuff
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
@@ -98,7 +99,7 @@ app.use('/', quotehistRoute);
 
 
 
-/////////////// HOME ROUTE ////////////////////////////
+///////////////        HOME ROUTE        ////////////////////////////
 app.get('/',function (req,res){
     if(req.isAuthenticated()){
         res.redirect('/loggedin')
@@ -123,7 +124,7 @@ app.get('/loggedin',function(req,res){
 
 
 
-///////////////// LOGIN ROUTE //////////////////////
+/////////////////      LOGIN ROUTE      //////////////////////
 app.get('/login',function (req,res){
     res.render('login');
 })
@@ -195,6 +196,14 @@ app.get("/logout",function(req,res){
 });
 
 /////////////////////// END /////////////////////
+
+
+
+
+
+
+
+
 
 
 
