@@ -43,7 +43,6 @@ app.use(passport.session());
 //////////////////// MONGODB ///////////////////////
 // mongoose.connect('mongodb+srv://admin:Group57@cluster0.peg8eaz.mongodb.net/userDB');
 mongoose.connect('mongodb://0.0.0.0:27017/Group57DB')
-
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("Database established!");
@@ -118,6 +117,8 @@ app.get('/loggedin',function(req,res){
 
 })
 /////////////////////// END /////////////////////
+
+
 
 
 
@@ -210,6 +211,7 @@ app.get('/secrets',function(req,res){
 })
 
 
+
 //FORM QUOTE
 app.get('/formquote',function (req,res){
     if(req.isAuthenticated()) {
@@ -231,15 +233,6 @@ app.get('/updateProfile',function(req,res){
 
 
 /////////////////////// END /////////////////////
-
-
-
-
-
-
-
-
-
 
 
 
