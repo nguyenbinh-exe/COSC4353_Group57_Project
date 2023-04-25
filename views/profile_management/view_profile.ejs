@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body>
-	<%- include ('../partials/header'); -%>
+	<%- include ('../partials/headerLogin'); -%>
 
 	<header>
 		<h1>PROFILE</h1>
@@ -24,6 +24,8 @@
 				
 				FULL NAME:<br><br>
 				
+				EMAIL:<br><br>
+
 				ADDRESS:<br><br>
 
 				&nbsp<br><br>
@@ -35,11 +37,13 @@
 				ZIP CODE:<br><br>
 				
 				<br><br><br>
-				<button id="edit-btn" onclick="window.location.href = 'create_profile';">UPDATE</button>
+				<button id="edit-btn" onclick="window.location.href = '/update_profile/<%= userid %>';">UPDATE</button>
 			</div> 
 			
 			<div id='report'>
 				<%= name.toUpperCase() %><br><br>
+
+				<%= username.toUpperCase() %><br><br>
 				
 				<%= address1.toUpperCase() %><br><br>
 

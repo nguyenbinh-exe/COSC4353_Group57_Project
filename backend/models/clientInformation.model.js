@@ -3,10 +3,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const clientInfo = new Schema({
+
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+    },
+
     name: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         maxlength: 50
     },

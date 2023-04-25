@@ -1,4 +1,4 @@
-<%- include ('partials/headerLogin'); -%>
+<%- include ('../partials/headerLogin'); -%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +64,7 @@
         </header>
         
 
-        <form action = '/added_profile' method = 'POST'>
+        <form action = '/update_profile/<%= userid %>' method = 'POST'>
             <!-- full name -->            
             <label for="firstname">FIRST NAME<span>*</span></label>
             <label for="lastname">LAST NAME<span>*</span></label>
@@ -141,9 +141,6 @@
             <br>  
             <button type="submit" id="submit-btn" disabled>SUBMIT</button>
             
-            
-            
-            
         </form>
 
         
@@ -152,7 +149,7 @@
 </body>
 </html>
 
-<%- include ('partials/footer'); -%>
+<%- include ('../partials/footer'); -%>
 
 
 

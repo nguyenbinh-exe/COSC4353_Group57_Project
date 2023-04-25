@@ -1,16 +1,13 @@
-<%- include ('partials/headerLogin'); -%>
+<%- include ('partials/header'); -%>
 <!--TITLE START-->
 <section id = "title">
     <div class = "container-fluid">
         <div class="row title_box">
             <div class="title_text_box col-lg-6">
-                <h1 class = "title_text">Most Trusted Energy Company</h1>
-                <p class="title_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero justo laoreet sit amet. Posuere ac ut consequat semper viverra nam.</p>
-                <!-- After logged in, no need button to sign in and register-->
-                <!-- <button type="button" onclick="window.location.href='login';" class="btn btn-light btn-lg sign_up_buttons" value="Click">Sign in</button>
-                <button type="button" onclick="window.location.href='register';" class="btn btn-outline-light btn-lg sign_up_buttons" value="Click">Register</button> -->
+                <div> <%= message %> </div>
             </div>
 
+            
 
             <div class="col-lg-6">
                 <img class="title_image" src="images/title_img.png" alt="title_image">

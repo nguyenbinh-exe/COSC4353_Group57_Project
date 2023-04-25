@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/secrets">Welcome <%= firstName %> <%= lastName %>  </a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/formquote">Submit A Quote</a>
@@ -48,7 +48,7 @@
                         <a class="nav-link" href="">Quote History</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/updateProfile">Setting</a>
+                        <a class="nav-link" href="/view_profile/<%= userid %>">Hi, <%= name %></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Log Out<span class="sr-only"></span></a>
