@@ -52,21 +52,32 @@ router.post('/add_fuel_quote', (req, res) => {
 
 /////////////// VIEW QUOTE //////////////////
 
-router.get('/get_all_fuel_quotes', (req, res) => {
-    FuelQuote.find({clientID: req.body.clientID}).then((result, err) => {
-        console.log(err)
-        if (err) {
-          console.log(err);
-        } else {
-            ClientData.findOne({userID: req.user._id})
-            .then((client) => {
-            res.render('quotehist', {name: client.name, userid: client._id}); //  Need to send data to front end
-          //res.send(result);
-            })
-        }
-      });
+router.get('/quotes', (req, res) => {
+  if(req.isAuthenticated()) {
+    const clientID = req.user._id;
+    ClientData.findOne({userID: clientID})
+      .then((client) => {
+        const address1 = client.address1;
+        const address2 = client.address2;
+        const city = client.city;
+        const state = client.state;
+        const zipcode = client.zipcode;
+        var display_zipcode = zipcode.toString()
+        const client_address = address1 + ' ' + address2 + ' ' + city + ' ' + state + ' ' + display_zipcode
+        FuelQuote.find({clientID: clientID})
+          .then((result, err) => {
+            if (err) {
+              console.log
+            } else {
+              console.log(result)
+              res.render('REALquotehist', {name: client.name, userid: client._id, client_address, quotes: result});
+            } 
+          })    
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
-
 /////////////// END //////////////////
 
 module.exports = router;

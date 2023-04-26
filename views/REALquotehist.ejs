@@ -4,29 +4,40 @@
 
 <main class="form-quote-form w-100 m-auto">
     <div class="container">
-        <h1>Submitted Quotes:</h1>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Gallons Requested</th>
-                <th>Delivery Address</th>
-                <th>Delivery Date</th>
-                <th>Suggested Price</th>
-                <th>Total Amount Due</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% quotes.forEach(function(quote) { %>
+        <% if (quotes.length > 0) { %>
+            <h1>Submitted Quotes</h1>
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td><%= quote.gallons %></td>
-                    <td><%= quote.delivery_address %></td>
-                    <td><%= quote.delivery_date %></td>
-                    <td><%= quote.suggested_price %></td>
-                    <td><%= quote.total_amount %></td>
+                    <th class="text-white">Index</th>
+                    <th class="text-white">Gallons Requested</th>
+                    <th class="text-white">Delivery Address</th>
+                    <th class="text-white">Delivery Date</th>
+                    <th class="text-white">Suggested Price</th>
+                    <th class="text-white">Amount Paid</th>
                 </tr>
-            <% }); %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <% for(let i =0; i < quotes.length; i++) { %>
+                    <% if (quotes[i].deliveryDate !== null) { %>
+                        <% var dateWithoutTime = quotes[i].deliveryDate.toLocaleDateString(); %>
+                    <% } else { %>
+                        <% var dateWithoutTime = quotes[i].deliveryDate; %>
+                    <% } %>
+                    <tr>
+                        <td class="text-white"><%= i + 1 %></td>
+                        <td class="text-white"><%= quotes[i].gallonsRequested %></td>
+                        <td class="text-white"><%= client_address %></td>
+                        <td class="text-white"><%= dateWithoutTime %></td>
+                        <td class="text-white"><%= quotes[i].suggestedPrice %></td>
+                        <td class="text-white"><%= quotes[i].totalPrice %></td>
+                    </tr>
+                <% }; %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p> No quotes found.</p>
+        <% }; %>
     </div>
 </main>
 
