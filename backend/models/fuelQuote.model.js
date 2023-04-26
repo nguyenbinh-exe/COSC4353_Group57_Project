@@ -19,6 +19,7 @@ const fuelQuote = new Schema({
         required: false,
         trim: false,
     },
+
     suggestedPrice: {
         type: Number,
         required: true,
@@ -31,6 +32,7 @@ const fuelQuote = new Schema({
     }
 }, {
     timestamps: true,
+    
 });
 
 const quoteHistory = mongoose.model('fuel_quotes', fuelQuote);
