@@ -49,11 +49,6 @@ app.use('/', user);
 
 /////////////////////// END /////////////////////
 
-
-app.get('/quotehist', (req, res) => {
-    res.render('quotehist');
-});
-
 app.listen(3000,function(){
     console.log(`Server is running on port: ${3000}`)
 })
