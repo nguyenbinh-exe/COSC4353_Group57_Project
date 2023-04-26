@@ -1,59 +1,45 @@
-<!doctype html>
 <%- include ('partials/header'); -%>
-<html>
-<style>
 
-table, th, td {
-  border:.5px solid rgb(127, 124, 124);
-  border-collapse: collapse;
-  border-spacing: 3px;
-  padding: 10px;
-  
- 
-}
-table caption { 
-    border:.5px solid rgb(130, 129, 129);
-    color: white;
-    padding: 10px;
-    background: rgb(4, 130, 248);
-}
-table th { 
-    padding: 10px;
-    background: rgb(246, 246, 246);
-}
-table td { 
-    padding: 10px;
-    background: rgb(246, 246, 246);
-}
-body {
-background-color: #dbd8d8ab;
-}
-</style>
-<body>
+<body class="text-center formQuote_body">
 
+<main class="form-quote-form w-100 m-auto">
+  <div class="container">
+    <h1 class="text-white">Submitted Quotes:</h1>
+    <table class="table table-striped border-white">
+      <thead>
+      <tr>
+        <th class="text-white">Gallons Requested</th>
+        <th class="text-white">Delivery Address</th>
+        <th class="text-white">Delivery Date</th>
+        <th class="text-white">Suggested Price</th>
+        <th class="text-white">Total Amount Due</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="text-white">1000</td>
+        <td class="text-white">123 Main St, Houston, TX 77002</td>
+        <td class="text-white">2023-05-01</td>
+        <td class="text-white">2.50</td>
+        <td class="text-white">2500.00</td>
+      </tr>
+      <tr>
+        <td class="text-white">500</td>
+        <td class="text-white">456 Elm St, Dallas, TX 75201</td>
+        <td class="text-white">2023-05-05</td>
+        <td class="text-white">2.75</td>
+        <td class="text-white">1375.00</td>
+      </tr>
+      <tr>
+        <td class="text-white">2000</td>
+        <td class="text-white">789 Oak St, Austin, TX 78701</td>
+        <td class="text-white">2023-05-10</td>
+        <td class="text-white">2.40</td>
+        <td class="text-white">4800.00</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 
-<table style="width:100%">
-  <tr>
-    <caption>Fuel Quote History</caption>
-    <th>Client</th>
-    <th>Gallons Requested</th>
-    <th>Delivery Address</th>
-    <th>Delivery Date</th>
-    <th>Suggested Price / gallon</th>
-    <th>Total Amount Due</th>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-
-</table>
-
-
-
-</body>
 <%- include ('partials/footer'); -%>
