@@ -1,45 +1,44 @@
-<%- include ('partials/header'); -%>
+<%- include ('partials/headerLogin'); -%>
 
-<body class="text-center formQuote_body">
+<body class="text-center " >
 
-<main class="form-quote-form w-100 m-auto">
-  <div class="container">
-    <h1 class="text-white">Submitted Quotes:</h1>
-    <table class="table table-striped border-white">
-      <thead>
-      <tr>
-        <th class="text-white">Gallons Requested</th>
-        <th class="text-white">Delivery Address</th>
-        <th class="text-white">Delivery Date</th>
-        <th class="text-white">Suggested Price</th>
-        <th class="text-white">Total Amount Due</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="text-white">1000</td>
-        <td class="text-white">123 Main St, Houston, TX 77002</td>
-        <td class="text-white">2023-05-01</td>
-        <td class="text-white">2.50</td>
-        <td class="text-white">2500.00</td>
-      </tr>
-      <tr>
-        <td class="text-white">500</td>
-        <td class="text-white">456 Elm St, Dallas, TX 75201</td>
-        <td class="text-white">2023-05-05</td>
-        <td class="text-white">2.75</td>
-        <td class="text-white">1375.00</td>
-      </tr>
-      <tr>
-        <td class="text-white">2000</td>
-        <td class="text-white">789 Oak St, Austin, TX 78701</td>
-        <td class="text-white">2023-05-10</td>
-        <td class="text-white">2.40</td>
-        <td class="text-white">4800.00</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<main>
+    <div class="container-fluid " >
+        <% if (quotes.length > 0) { %>
+            <h1 style = "margin-bottom: 50px">Quote History</h1>
+            <table class="table table-bordered table-dark" >
+                <thead>
+                <tr>
+                    <th scope="col" >#</th>
+                    <th scope="col" >Gallons Requested</th>
+                    <th scope="col" >Delivery Address</th>
+                    <th scope="col" >Delivery Date</th>
+                    <th scope="col" >Suggested Price</th>
+                    <th scope="col" >Amount Paid</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(let i =0; i < quotes.length; i++) { %>
+                    <% if (quotes[i].deliveryDate !== null) { %>
+                        <% var dateWithoutTime = quotes[i].deliveryDate.toLocaleDateString(); %>
+                    <% } else { %>
+                        <% var dateWithoutTime = quotes[i].deliveryDate; %>
+                    <% } %>
+                    <tr>
+                        <th scope="row"><%= i + 1 %></th>
+                        <td ><%= quotes[i].gallonsRequested %></td>
+                        <td ><%= client_address %></td>
+                        <td ><%= dateWithoutTime %></td>
+                        <td ><%= quotes[i].suggestedPrice %></td>
+                        <td ><%= quotes[i].totalPrice %></td>
+                    </tr>
+                <% }; %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p> No quotes found.</p>
+        <% }; %>
+    </div>
 </main>
 
 <%- include ('partials/footer'); -%>

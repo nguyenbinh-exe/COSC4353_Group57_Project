@@ -43,6 +43,7 @@ router.post('/add_fuel_quote', (req, res) => {
             totalPrice
         });
         fuelQuote.save();
+        res.redirect('quotes')
     }
 
 
@@ -70,7 +71,7 @@ router.get('/quotes', (req, res) => {
               console.log
             } else {
               console.log(result)
-              res.render('REALquotehist', {name: client.name, userid: client._id, client_address, quotes: result});
+              res.render('quotehist', {name: client.name, userid: client._id, client_address, quotes: result});
             } 
           })    
     });

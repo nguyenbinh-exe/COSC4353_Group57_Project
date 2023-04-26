@@ -3,66 +3,63 @@
 <html>
 <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Profile Management</title>
+	<title>Profile Management</title>
 
-    <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/homepage.css">
+	<link rel="stylesheet" href="../css/profile.css">
+	<link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body>
 
 
-	<header>
-		<h1>PROFILE</h1>
-	</header>
-	<section class=report>
-		<p>
-			<div id="report">
-				
-				FULL NAME:<br><br>
-				
-				EMAIL:<br><br>
+<header>
+	<h2>PROFILE</h2>
+</header>
 
-				ADDRESS:<br><br>
-
-				&nbsp<br><br>
-				
-				CITY:<br><br>
-				
-				STATE:<br><br>
-				
-				ZIP CODE:<br><br>
-				
-				<br><br><br>
-				<button id="edit-btn" onclick="window.location.href = '/update_profile/<%= userid %>';">UPDATE</button>
-			</div> 
-			
-			<div id='report'>
-				
-				<%= name.toUpperCase() %><br><br>
-
-				<%= username.toUpperCase() %><br><br>
-				
-				<%= address1.toUpperCase() %><br><br>
-
-				<%= address2.toUpperCase() %><br><br>
-				
-				<%= city.toUpperCase() %><br><br>
-				
-				<%= state %><br><br>
-				
-				<%= display_zipcode.toUpperCase() %>
-			</div>
-		
-	</section>		
-	
+<section class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table table-bordered table-dark">
+				<tbody>
+				<tr>
+					<td>FULL NAME:</td>
+					<td><%= name.toUpperCase() %></td>
+				</tr>
+				<tr>
+					<td>EMAIL:</td>
+					<td><%= username.toUpperCase() %></td>
+				</tr>
+				<tr>
+					<td>ADDRESS:</td>
+					<td><%= address1.toUpperCase() %></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><%= address2.toUpperCase() %></td>
+				</tr>
+				<tr>
+					<td>CITY:</td>
+					<td><%= city.toUpperCase() %></td>
+				</tr>
+				<tr>
+					<td>STATE:</td>
+					<td><%= state %></td>
+				</tr>
+				<tr>
+					<td>ZIP CODE:</td>
+					<td><%= display_zipcode.toUpperCase() %></td>
+				</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary" onclick="window.location.href = '/update_profile/<%= userid %>';">UPDATE</button>
+		</div>
+	</div>
+</section>
 
 </body>
 </html>
 
 <%- include ('../partials/footer'); -%>
-
-
