@@ -14,7 +14,17 @@ const fuelQuote = new Schema({
         required: true,
         trim: true,
     },
+    deliveryDate: {
+        type: Date,
+        required: false,
+        trim: false,
+    },
     suggestedPrice: {
+        type: Number,
+        required: true,
+        trim: true,
+    },
+    totalPrice: {
         type: Number,
         required: true,
         trim: true,
