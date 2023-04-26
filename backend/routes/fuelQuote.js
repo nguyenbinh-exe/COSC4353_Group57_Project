@@ -12,9 +12,16 @@ router.get('/formquote', async function(req, res) {
         const clientID = req.user._id;
         const fuelQuote = await FuelQuote.findOne({ clientID: clientID }).exec();
         const hasHistory = !!fuelQuote;
-        const client = await ClientData.findOne({ userID: req.user._id }).exec();
+        const client = await ClientData.findOne({  userID: req.user._id}).exec();
 
-        res.render('form_quote', { name: client.name, userid: client._id, hasHistory });
+        res.render('form_quote', {  name: client.name,
+                                                userid: client._id,
+                                                address1: client.address1,
+                                                address2: client.address2,
+                                                city: client.city,
+                                                state: client.state,
+                                                zipcode: client.zipcode,
+                                                hasHistory });
     } catch (err) {
         console.log(err);
     }
