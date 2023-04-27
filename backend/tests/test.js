@@ -95,3 +95,57 @@ it('retrieves customer data', async () => {
         
     }));
 })
+
+it('no customer data', async () => {
+    mockingoose(ClientData).toReturn(
+        null, 'findOne');
+
+    await request(app).post('/update_profile', 
+    {
+        id : "643258d491d8d18a99d65a6d",
+        name: "Test Vo",
+        address1: "1600",
+        address2: "Pennsylvania",
+        city: "rehab",
+        state: "CA",
+        zipcode: 95131
+    }).then( ((res) =>  {
+        console.log(res.error)
+        expect(res.status).toEqual(400); 
+        
+    }));
+})
+
+it('view_profile customer data', async () => {
+    mockingoose(ClientData).toReturn(
+        null, 'findOne');
+
+    await request(app).get('/view_profile', 
+    {
+        id : "643258d491d8d18a99d65a6d",
+        name: "Test Vo",
+        address1: "1600",
+        address2: "Pennsylvania",
+        city: "rehab",
+        state: "CA",
+        zipcode: 95131
+    }).then( ((res) =>  {
+        console.log(res.error)
+        expect(res.status).toEqual(400); 
+        
+    }));
+})
+
+it('get_all_fuel_quotes no customer data', async () => {
+    mockingoose(FuelQuote).toReturn(
+        null, 'find');
+
+    await request(app).get('/get_all_fuel_quotes', 
+    {
+        clientID: "2342"
+    }).then( ((res) =>  {
+        console.log(res.error)
+        expect(res.status).toEqual(400); 
+        
+    }));
+})

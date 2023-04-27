@@ -42,14 +42,9 @@ router.post('/create_profile', (req, res) => {
                 console.log(user);
                 userCredentials.findOne({_id: user.userID})
                 .then((client) => {
-                    req.login(client, function (err) {
-                        if ( !err ) {
-                            const message = 'Thank you for registering. Please sign in again.';
-                            res.render('message', {message});
-                            req.logout()
-                        };
-                    })
-                })   
+                    req.login(client, (err) => { if (!err) { res.render('message', {message: "Thank you for registering. Please sign in again."}); req.logout();
+                    }})
+                }) 
                 .catch(err => res.status(400).json('Error: ' + err));               
             })
             .catch(err => res.status(400).json('Error: ' + err));    

@@ -71,6 +71,8 @@ app.get('/view_profile', (req, res) => {
     .then((user) => {
         if (!user) {
         console.log('User not found');
+        res.sendStatus(400)
+        return
         } else {
             res.send(user)
             return
@@ -95,12 +97,12 @@ app.post('/add_fuel_quote', (req, res) => {
 });
 
 app.get('/get_all_fuel_quotes', (req, res) => {
-    FuelQuote.find({clientID: req.body.clientID}).then((result, err) => {
-        console.log(err)
-        if (err) {
-          console.log(err);
+    FuelQuote.find({clientID: req.body.clientID}).then((result) => {
+        console.log(result)
+        if (result) {
+            res.send(result);
         } else {
-          res.send(result);
+          res.sendStatus(400);
         }
       });
 });
