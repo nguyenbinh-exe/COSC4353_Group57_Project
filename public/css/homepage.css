@@ -45,6 +45,11 @@
     margin: auto;
     
 }
+.nav-link{
+    font-family: 'Montserrat', sans-serif;
+    color: whitesmoke;
+    font-weight: normal;
+}
 .title_box{
     margin-top: 50px;
     padding-bottom: 200px;
@@ -101,4 +106,13 @@
 .footer-icon{
     margin: 20px 10px;
 }
+.text-muted{
+    color:white;
+}
 
+.section-heading{
+
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
