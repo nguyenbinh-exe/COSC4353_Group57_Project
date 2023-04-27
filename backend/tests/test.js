@@ -92,5 +92,6 @@ it('retrieves customer data', async () => {
     }).then( ((res) =>  {
         console.log(res.error)
         expect(res.status).toEqual(200); 
+        
     }));
 })

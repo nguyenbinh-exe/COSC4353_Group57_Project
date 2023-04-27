@@ -105,5 +105,4 @@ app.get('/get_all_fuel_quotes', (req, res) => {
       });
 });
 
-
 module.exports = app
