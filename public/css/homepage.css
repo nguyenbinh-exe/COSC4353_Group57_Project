@@ -113,6 +113,11 @@
 .section-heading{
 
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     margin-top: 50px;
+}
+
+.about_us_paragraph{
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 50px ;
 }
