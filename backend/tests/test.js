@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require("../routes/profile");
+const app = require("../routes/fortest");
 const sinon = require('sinon')
 const mockingoose = require('mockingoose');
 
