@@ -23,7 +23,7 @@ Front-end:
 Back-end:
   - Node.js
   - Express.js
-   -MongoDB
+  - MongoDB
 ```
 
 ## Installation
