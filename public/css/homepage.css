@@ -121,3 +121,9 @@
     font-family: 'Montserrat', sans-serif;
     padding-bottom: 50px ;
 }
+
+.message{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
