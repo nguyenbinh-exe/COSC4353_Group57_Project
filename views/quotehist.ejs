@@ -29,7 +29,7 @@
                     <% var city = quotes[i].deliveryAddress.city; %>
                     <% var state = quotes[i].deliveryAddress.state;%>
                     <% var zipcode = quotes[i].deliveryAddress.zipcode; %>
-                    <% var deliveryAddress = address1 + ' ' + address2 + ' ' + city + ' , ' + state + ' , ' + zipcode %>
+                    <% var deliveryAddress = address1 + ' ' + address2 + ' , ' + city + ' , ' + state + ' , ' + zipcode %>
                     <tr>
                         <th scope="row"><%= i + 1 %></th>
                         <td ><%= quotes[i].gallonsRequested %></td>
