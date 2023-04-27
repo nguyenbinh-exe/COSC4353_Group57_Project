@@ -64,13 +64,11 @@
       const hist_factor = checkHistory(); // Get from Fuel Quote History
       const gal_factor = getGallonFactor(gal);
       const margin = 1.5 * (loc_factor - hist_factor + gal_factor + 0.1);
-
       // Returns total price in Total Amount Due on web page
       const suggested_price = 1.5 +  margin;
       document.getElementById("suggestedPrice").value = suggested_price.toFixed(2);
       const total_price = suggested_price * gal;
       document.getElementById("totalPrice").value = total_price.toFixed(2);
-
       // Enables submit button
       const submit_btn = document.getElementById("submit-btn")
       submit_btn.disabled = false;
@@ -97,7 +95,6 @@
         return 0;
     <% } %>
     }
-
     window.addEventListener('DOMContentLoaded', (event) =>
     {
       getAddress();
@@ -105,15 +102,11 @@
     function getAddress()
     {
       document.getElementById("address1").value = "<%= address1 %>";
-      if (!document.getElementById("address2").value)
-        document.getElementById("address2").value = " ";
-      else
-        document.getElementById("address2").value = "<%= address2 %>";
+      document.getElementById("address2").value = "<%= address2 %>";
       document.getElementById("city").value = "<%= city %>";
       document.getElementById("state").value = "<%= state %>";
       document.getElementById("zipcode").value = "<%= zipcode %>";
     }
-
   </script>
 </body>
 
