@@ -24,10 +24,16 @@
                     <% } else { %>
                         <% var dateWithoutTime = quotes[i].deliveryDate; %>
                     <% } %>
+                    <% var address1 = quotes[i].deliveryAddress.address1; %>
+                    <% var address2 = quotes[i].deliveryAddress.address2 ;%>
+                    <% var city = quotes[i].deliveryAddress.city; %>
+                    <% var state = quotes[i].deliveryAddress.state;%>
+                    <% var zipcode = quotes[i].deliveryAddress.zipcode; %>
+                    <% var deliveryAddress = address1 + ' ' + address2 + ' ' + city + ' , ' + state + ' , ' + zipcode %>
                     <tr>
                         <th scope="row"><%= i + 1 %></th>
                         <td ><%= quotes[i].gallonsRequested %></td>
-                        <td ><%= client_address %></td>
+                        <td ><%= deliveryAddress %></td>
                         <td ><%= dateWithoutTime %></td>
                         <td ><%= quotes[i].suggestedPrice %></td>
                         <td ><%= quotes[i].totalPrice %></td>

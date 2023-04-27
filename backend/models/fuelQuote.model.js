@@ -14,6 +14,13 @@ const fuelQuote = new Schema({
         required: true,
         trim: true,
     },
+    deliveryAddress: {        
+            address1: String,
+            address2: String,
+            city: String,
+            state: String,
+            zipcode: String   
+    },    
     deliveryDate: {
         type: Date,
         required: false,

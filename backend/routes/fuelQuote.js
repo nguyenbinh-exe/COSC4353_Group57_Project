@@ -35,12 +35,27 @@ router.post('/add_fuel_quote', (req, res) => {
         var deliveryDate = body.deliveryDate
         var suggestedPrice = body.suggestedPrice
         var totalPrice = body.totalPrice
+
+        const address1 = body.address1;
+        const address2 = body.address2;
+        const city = body.city;
+        const state = body.state;
+        const zipcode = body.zipcode;   
+
+        
         const fuelQuote = new FuelQuote({
             clientID,
             gallonsRequested,
             deliveryDate,
             suggestedPrice,
-            totalPrice
+            totalPrice,
+            deliveryAddress: {
+              address1,
+              address2,
+              city,
+              state,
+              zipcode
+            }
         });
         fuelQuote.save();
         res.redirect('quotes')
@@ -58,20 +73,13 @@ router.get('/quotes', (req, res) => {
     const clientID = req.user._id;
     ClientData.findOne({userID: clientID})
       .then((client) => {
-        const address1 = client.address1;
-        const address2 = client.address2;
-        const city = client.city;
-        const state = client.state;
-        const zipcode = client.zipcode;
-        var display_zipcode = zipcode.toString()
-        const client_address = address1 + ' ' + address2 + ' ' + city + ' ' + state + ' ' + display_zipcode
         FuelQuote.find({clientID: clientID})
           .then((result, err) => {
             if (err) {
               console.log
             } else {
               console.log(result)
-              res.render('quotehist', {name: client.name, userid: client._id, client_address, quotes: result});
+              res.render('quotehist', {name: client.name, userid: client._id, quotes: result});
             } 
           })    
     });
