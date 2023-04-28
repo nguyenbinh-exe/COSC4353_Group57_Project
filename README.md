@@ -30,15 +30,19 @@ Back-end:
 
 Install dependencies using npm install
 
-```Bash
-1. Clone the repository to your local machine using git clone 'https://github.com/nguyenbinh-exe/COSC4353_Group57_Project.git'
-2. Navigate to the project directory using cd COSC4353_Group57_Project
-3. Install dependencies using
-   'npm install'
-4. Run the application using 
-   'node app.js'
-5. Open http://localhost:3000 to view it in the browser.
+```bash
+npm install 
 ```
 
+## Usage
+
+```javascript
+# Step 1 - to start the application, go to terminal
+Node app.js
+
+#Step 2 - go to your browser 
+Open http://localhost:3000 to view it in the browser.
+
+```
 
 
