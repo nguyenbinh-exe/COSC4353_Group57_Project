@@ -26,15 +26,10 @@
                     <% } %>
                     <% var address1 = quotes[i].deliveryAddress.address1; %>
                     <% var address2 = quotes[i].deliveryAddress.address2 ;%>
-                    <% console.log('address2 is ' + address2) %>
                     <% var city = quotes[i].deliveryAddress.city; %>
                     <% var state = quotes[i].deliveryAddress.state;%>
                     <% var zipcode = quotes[i].deliveryAddress.zipcode; %>
-                    <% if (address2.trim().length === 0) { %>
-                        <% var deliveryAddress = address1 + ', ' + city + ', ' + state + ', ' + zipcode %>
-                    <% } else { %>
-                        <% var deliveryAddress = address1 + ' ' + address2 + ', ' + city + ', ' + state + ', ' + zipcode %>
-                    <% } %>
+                    <% var deliveryAddress = address1 + ' ' + address2 + ' , ' + city + ' , ' + state + ' , ' + zipcode %>
                     <tr>
                         <th scope="row"><%= i + 1 %></th>
                         <td ><%= quotes[i].gallonsRequested %></td>
