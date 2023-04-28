@@ -30,7 +30,7 @@
                     <% var city = quotes[i].deliveryAddress.city; %>
                     <% var state = quotes[i].deliveryAddress.state;%>
                     <% var zipcode = quotes[i].deliveryAddress.zipcode; %>
-                    <% if (address2.trim().length === 0) { %>
+                    <% if (address2 === undefined) { %>
                         <% var deliveryAddress = address1 + ', ' + city + ', ' + state + ', ' + zipcode %>
                     <% } else { %>
                         <% var deliveryAddress = address1 + ' ' + address2 + ', ' + city + ', ' + state + ', ' + zipcode %>
