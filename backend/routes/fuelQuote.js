@@ -35,12 +35,27 @@ router.post('/add_fuel_quote', (req, res) => {
         var deliveryDate = body.deliveryDate
         var suggestedPrice = body.suggestedPrice
         var totalPrice = body.totalPrice
+
+        const address1 = body.address1;
+        const address2 = body.address2;
+        const city = body.city;
+        const state = body.state;
+        const zipcode = body.zipcode;
+
+
         const fuelQuote = new FuelQuote({
             clientID,
             gallonsRequested,
             deliveryDate,
             suggestedPrice,
-            totalPrice
+            totalPrice,
+            deliveryAddress: {
+                address1,
+                address2,
+                city,
+                state,
+                zipcode
+            }
         });
         fuelQuote.save();
         res.redirect('quotes')
