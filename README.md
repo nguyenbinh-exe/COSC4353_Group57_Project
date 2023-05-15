@@ -18,11 +18,12 @@ A software application that will predict the rate of the fuel based on the follo
 ## Technologies Used
 ```List
 Front-end:
-   -React.js
+   -EJS
    -Bootstrap
 Back-end:
   - Node.js
   - Express.js
+Database:
   - MongoDB
 ```
 
